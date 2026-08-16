@@ -1,0 +1,30 @@
+# Dependencies
+node_modules/
+
+# Power BI visual build output
+**/dist/
+**/.tmp/
+**/webpack.statistics.*.html
+
+# Local certificates and keys
+*.pfx
+*.p12
+*.pem
+*.key
+*.crt
+*.cer
+
+# Environment and secret files
+.env
+.env.*
+!.env.example
+
+# Editor and OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*

@@ -1,0 +1,147 @@
+{
+    "dataRoles": [
+        {
+            "displayName": "Category Data",
+            "name": "category",
+            "kind": "Grouping"
+        },
+        {
+            "displayName": "Measure Data",
+            "name": "measure",
+            "kind": "Measure"
+        }
+    ],
+    "objects": {
+        "colors": {
+            "displayName": "Colors",
+            "properties": {
+                "backgroundColor": {
+                    "type": {
+                        "fill": {
+                            "solid": {
+                                "color": true
+                            }
+                        }
+                    }
+                },
+                "autoLineColor": {
+                    "type": {
+                        "bool": true
+                    }
+                },
+                "lineColor": {
+                    "type": {
+                        "fill": {
+                            "solid": {
+                                "color": true
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "textSizes": {
+            "displayName": "Text sizes",
+            "properties": {
+                "titleSize": { "type": { "formatting": { "fontSize": true } } },
+                "valueSize": { "type": { "formatting": { "fontSize": true } } },
+                "sublabelSize": { "type": { "formatting": { "fontSize": true } } },
+                "axisSize": { "type": { "formatting": { "fontSize": true } } }
+            }
+        },
+        "labelsValues": {
+            "displayName": "Labels & values",
+            "properties": {
+                "titleText": { "type": { "text": true } },
+                "selectedTotalText": { "type": { "text": true } },
+                "primarySublabelText": { "type": { "text": true } },
+                "startText": { "type": { "text": true } },
+                "endText": { "type": { "text": true } },
+                "changeText": { "type": { "text": true } },
+                "labelOverflow": {
+                    "type": {
+                        "enumeration": [
+                            { "displayName": "Ellipsis", "value": "ellipsis" },
+                            { "displayName": "Wrap", "value": "wrap" }
+                        ]
+                    }
+                },
+                "showValuePrefix": { "type": { "bool": true } },
+                "valuePrefix": { "type": { "text": true } },
+                "currentValueDays": { "type": { "numeric": true } }
+            }
+        },
+        "axes": {
+            "displayName": "Axes",
+            "properties": {
+                "numberFormat": {
+                    "type": {
+                        "enumeration": [
+                            { "displayName": "Auto", "value": "auto" },
+                            { "displayName": "Full number", "value": "full" },
+                            { "displayName": "Thousands (K)", "value": "thousands" },
+                            { "displayName": "Millions (M)", "value": "millions" }
+                        ]
+                    }
+                },
+                "dateFormat": {
+                    "type": {
+                        "enumeration": [
+                            { "displayName": "Jan 5, 24", "value": "short" },
+                            { "displayName": "Jan 5", "value": "monthDay" },
+                            { "displayName": "1/5/24", "value": "numeric" },
+                            { "displayName": "Jan 5, 2024", "value": "long" },
+                            { "displayName": "Jan 2024", "value": "monthYear" },
+                            { "displayName": "2024-01-05", "value": "iso" }
+                        ]
+                    }
+                }
+            }
+        },
+        "chart": {
+            "displayName": "Chart",
+            "properties": {
+                "handleSize": { "type": { "numeric": true } },
+                "lineWidth": { "type": { "numeric": true } },
+                "cornerRadius": { "type": { "numeric": true } },
+                "showBorder": { "type": { "bool": true } },
+                "borderColor": {
+                    "type": {
+                        "fill": {
+                            "solid": {
+                                "color": true
+                            }
+                        }
+                    }
+                },
+                "borderWidth": { "type": { "numeric": true } }
+            }
+        }
+    },
+    "dataViewMappings": [
+        {
+            "categorical": {
+                "categories": {
+                    "for": {
+                        "in": "category"
+                    },
+                    "dataReductionAlgorithm": {
+                        "top": {}
+                    }
+                },
+                "values": {
+                    "select": [
+                        {
+                            "bind": {
+                                "to": "measure"
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    ],
+    "privileges": [],
+    "supportsMultiVisualSelection": true,
+    "suppressDefaultTitle": true
+}

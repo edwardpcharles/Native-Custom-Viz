@@ -2,6 +2,10 @@
 
 A responsive Power BI custom visual for exploring a time-series measure with two draggable comparison handles.
 
+## Current Distribution
+
+Download [Fancy Line Graph Slicer 1.1.39.0](dist/fancyLineGraphSlicerA1C4E7B9D2F64830AB56C91E73D8042F.1.1.39.0.pbiviz) and import it into Power BI Desktop or Power BI Service.
+
 ## Agent Entry Point
 
 An agent opened directly in this folder can bootstrap and validate the project with:
@@ -108,7 +112,7 @@ Power BI supplies a categorical data view. The visual converts valid category/me
 
 - Keep property names synchronized between `src/settings.ts` and `capabilities.json`.
 - Increment both version fields in `pbiviz.json` for distributable releases.
-- Do not commit `dist/`, `.tmp/`, `node_modules/`, certificates, or local editor settings.
+- Track `dist/*.pbiviz` only when publishing a requested release artifact. Do not commit other `dist` files, `.tmp/`, `node_modules/`, certificates, or local editor settings.
 
 ## License
 

@@ -27,7 +27,7 @@ Replace `<visual-folder>` with the selected directory name. If `node` or `npm` i
 - Read the selected visual's `README.md`, `package.json`, `pbiviz.json`, and nearest source files before editing.
 - Treat `src/visual.ts`, `src/settings.ts`, `style/visual.less`, `capabilities.json`, and `pbiviz.json` as the authored visual surface.
 - Keep matching format property names synchronized between `src/settings.ts` and `capabilities.json`.
-- Do not edit or commit `node_modules/`, `dist/`, `.tmp/`, webpack statistics, certificates, keys, passphrases, environment files, or machine-specific settings.
+- Do not edit or commit `node_modules/`, `.tmp/`, webpack statistics, certificates, keys, passphrases, environment files, or machine-specific settings. A requested release may commit the generated `dist/*.pbiviz` artifact after a successful package build.
 - Dependencies intentionally float within the ranges in `package.json`; `.npmrc` disables lockfile generation.
 - Run `npm run lint` after source edits and `pbiviz package` before considering a change complete.
 - Keep the existing visual GUID for updates. Increment both version fields in `pbiviz.json` only when preparing a new distributable release.
@@ -51,7 +51,7 @@ An interactive line graph that combines trend analysis with two draggable range 
 
 Each visual is self-contained in its own folder with the source, manifest, capabilities, styles, icon, dependency declarations, and build configuration needed to compile it.
 
-Generated packages, temporary build files, editor settings, certificates, and machine-specific files are intentionally excluded.
+Temporary build files, editor settings, certificates, and machine-specific files are intentionally excluded. Importable `dist/*.pbiviz` release artifacts can be tracked for direct distribution.
 
 ## Start on a New Computer
 

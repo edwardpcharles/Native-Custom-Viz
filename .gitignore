@@ -3,7 +3,8 @@ node_modules/
 **/package-lock.json
 
 # Power BI visual build output
-**/dist/
+**/dist/*
+!**/dist/*.pbiviz
 **/.tmp/
 **/webpack.statistics.*.html
 

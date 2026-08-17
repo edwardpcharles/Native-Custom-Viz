@@ -27,16 +27,17 @@ For clean-machine prerequisites, cloning, certificate setup, Power BI Service li
 From this folder, the complete command set is:
 
 ```shell
-npm ci
+npm install
 npm run lint
 npm run start
 npm run package
 ```
 
-- Run `npm ci` once after cloning or when `package-lock.json` changes.
+- Run `npm install` after cloning or when `package.json` changes. Dependencies are intentionally not lockfile-pinned, and `.npmrc` disables lockfile generation.
+- TypeScript can update within major version 5, which is the range supported by the current Power BI Visuals CLI.
 - Use `npm run start` for live debugging with the Developer Visual in Power BI Service.
 - Use `npm run package` to create an importable `dist/*.pbiviz` for Power BI Desktop, Power BI Service, or distribution.
-- The scripts use the pinned local Power BI Visuals CLI; no global npm package is required.
+- The scripts use the current project-local Power BI Visuals CLI; no global npm package is required.
 
 ## Source Layout
 
@@ -51,7 +52,7 @@ Fancy Line Graph Slicer/
 |   `-- visual.less
 |-- capabilities.json
 |-- eslint.config.mjs
-|-- package-lock.json
+|-- .npmrc
 |-- package.json
 |-- pbiviz.json
 `-- tsconfig.json
@@ -62,7 +63,7 @@ Fancy Line Graph Slicer/
 - `style/visual.less` defines layout, chart styling, responsive states, and the directional comparison treatment.
 - `capabilities.json` declares data roles, mappings, formatting properties, and selection support.
 - `pbiviz.json` contains the visual identity, API version, source references, and package metadata.
-- `package.json`, `package-lock.json`, `tsconfig.json`, and `eslint.config.mjs` define the reproducible toolchain.
+- `package.json`, `tsconfig.json`, and `eslint.config.mjs` define the update-friendly toolchain.
 
 ## Architecture
 

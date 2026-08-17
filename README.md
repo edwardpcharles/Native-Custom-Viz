@@ -10,7 +10,7 @@ An interactive line graph that combines trend analysis with two draggable range 
 
 ## Repository Layout
 
-Each visual is self-contained in its own folder with the source, manifest, capabilities, styles, icon, dependency lockfile, and build configuration needed to compile it.
+Each visual is self-contained in its own folder with the source, manifest, capabilities, styles, icon, dependency declarations, and build configuration needed to compile it.
 
 Generated packages, temporary build files, editor settings, certificates, and machine-specific files are intentionally excluded.
 
@@ -27,7 +27,7 @@ Install:
 - A modern browser and a Power BI Pro or Premium Per User account for live Service debugging
 - Power BI Desktop on Windows only if testing packaged visuals in Desktop
 
-Do not install `pbiviz` globally. The repository pins Power BI Visuals CLI 7.2.1 and all other Node dependencies in `package-lock.json`.
+Do not install `pbiviz` globally. `npm install` gets the current Power BI Visuals CLI and development tools for this project.
 
 ### Get the Source and Install Dependencies
 
@@ -37,10 +37,10 @@ Read access to the public repository is sufficient to build and test locally:
 git clone https://github.com/edwardpcharles/Native-Custom-Viz.git
 cd Native-Custom-Viz
 cd "Fancy Line Graph Slicer"
-npm ci
+npm install
 ```
 
-`npm ci` installs the exact dependency versions from `package-lock.json`. Run it after the initial clone and whenever that lockfile changes. A contributor needs a fork or separate write permission only to push changes; builds do not require repository write access.
+Dependencies use compatible version ranges, while development tools follow their current npm `latest` releases. TypeScript is limited to the Power BI toolchain's supported major version rather than an exact release. The visual's `.npmrc` prevents lockfile generation. Run `npm install` after cloning and whenever `package.json` changes. A contributor needs a fork or separate write permission only to push changes; builds do not require repository write access.
 
 ## Commands
 
@@ -48,12 +48,12 @@ Run these from `Native-Custom-Viz/Fancy Line Graph Slicer`:
 
 | Command | Purpose |
 | --- | --- |
-| `npm ci` | Install the pinned dependencies on a clean machine |
+| `npm install` | Install current compatible dependencies and development tools |
 | `npm run lint` | Check the authored source |
 | `npm run start` | Start the local server for live debugging in Power BI Service |
 | `npm run package` | Validate and create a distributable `.pbiviz` in `dist/` |
 
-The npm scripts automatically use the repository-local CLI. No global npm packages are required.
+The npm scripts automatically use the project-local CLI. No global npm packages are required. Because dependencies are not locked, review and test changes after every fresh install or dependency update.
 
 ### Live Debugging in Power BI Service
 
@@ -111,15 +111,15 @@ npm run pbiviz -- install-cert
 
 Complete the operating system's certificate import for the current user, restart the browser, restart `npm run start`, and retry the asset checks. Never share the generated passphrase. If the browser still rejects localhost, follow the current [Microsoft certificate troubleshooting guidance](https://learn.microsoft.com/power-bi/developer/visuals/develop-circle-card#troubleshooting).
 
-### Check the Tool Version
+### Check the Installed Tool Version
 
-Use the repository-pinned CLI rather than a global installation:
+Check the project-local CLI selected by the latest install:
 
 ```shell
 npm run pbiviz -- --version
 ```
 
-The expected version is declared in `Fancy Line Graph Slicer/package.json`.
+The command reports the version currently resolved from npm.
 
 ## Privacy and Repository Safety
 

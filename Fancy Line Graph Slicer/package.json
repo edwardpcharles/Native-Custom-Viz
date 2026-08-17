@@ -14,16 +14,15 @@
     "lint": "npx eslint ."
   },
   "dependencies": {
-    "@types/d3": "7.4.3",
-    "d3": "7.9.0",
+    "@types/d3": "^7.4.3",
+    "d3": "^7.9.0",
     "powerbi-visuals-api": "~5.11.1",
-    "powerbi-visuals-utils-formattingmodel": "7.1.0"
+    "powerbi-visuals-utils-formattingmodel": "^7.1.0"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "8.67.0",
-    "eslint": "10.8.1",
-    "eslint-plugin-powerbi-visuals": "1.1.1",
-    "powerbi-visuals-tools": "7.2.1",
-    "typescript": "5.9.3"
+    "eslint": "latest",
+    "eslint-plugin-powerbi-visuals": "latest",
+    "powerbi-visuals-tools": "latest",
+    "typescript": "5.x"
   }
 }

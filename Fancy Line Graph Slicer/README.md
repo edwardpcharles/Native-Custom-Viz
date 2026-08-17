@@ -9,12 +9,14 @@ An agent opened directly in this folder can bootstrap and validate the project w
 ```shell
 node --version
 npm --version
+npm install --global powerbi-visuals-tools@latest
+pbiviz --version
 npm install
 npm run lint
-npm run package
+pbiviz package
 ```
 
-Use `npm run start` only for live testing with the Developer Visual in Power BI Service. Read the repository-level [Agent Quick Start](../README.md#agent-quick-start) for operating boundaries, clean-machine prerequisites, certificate troubleshooting, privacy rules, and Microsoft Learn references.
+Use `pbiviz start` only for live testing with the Developer Visual in Power BI Service. Read the repository-level [Agent Quick Start](../README.md#agent-quick-start) for operating boundaries, clean-machine prerequisites, certificate troubleshooting, privacy rules, and Microsoft Learn references.
 
 For most changes:
 
@@ -23,7 +25,7 @@ For most changes:
 - Layout and appearance: `style/visual.less`
 - Visual identity and release version: `pbiviz.json`
 
-Do not edit generated output. Finish source changes with `npm run lint`, `npm run package`, and `git diff --check`.
+Do not edit generated output. Finish source changes with `npm run lint`, `pbiviz package`, and `git diff --check`.
 
 ## Features
 
@@ -52,15 +54,15 @@ From this folder, the complete command set is:
 ```shell
 npm install
 npm run lint
-npm run start
-npm run package
+pbiviz start
+pbiviz package
 ```
 
 - Run `npm install` after cloning or when `package.json` changes. Dependencies are intentionally not lockfile-pinned, and `.npmrc` disables lockfile generation.
 - TypeScript can update within major version 5, which is the range supported by the current Power BI Visuals CLI.
-- Use `npm run start` for live debugging with the Developer Visual in Power BI Service.
-- Use `npm run package` to create an importable `dist/*.pbiviz` for Power BI Desktop, Power BI Service, or distribution.
-- The scripts use the current project-local Power BI Visuals CLI; no global npm package is required.
+- Install or update the global CLI with `npm install --global powerbi-visuals-tools@latest`.
+- Use `pbiviz start` for live debugging with the Developer Visual in Power BI Service.
+- Use `pbiviz package` to create an importable `dist/*.pbiviz` for Power BI Desktop, Power BI Service, or distribution.
 
 ## Source Layout
 

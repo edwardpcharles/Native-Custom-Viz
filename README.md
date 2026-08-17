@@ -4,30 +4,32 @@ Open-source Power BI custom visuals built with the official Power BI Visuals SDK
 
 ## Agent Quick Start
 
-This repository is the source of truth. An AI agent pointed at this directory should work only in `Fancy Line Graph Slicer` unless the task explicitly targets repository-level documentation or configuration.
+This repository can contain multiple Power BI visual projects. An AI agent should discover visual roots by locating directories that contain both `pbiviz.json` and `package.json`, then select the project named by the task. If more than one project is plausible, ask which visual to change.
 
 From the repository root:
 
 ```shell
 git status --short
-cd "Fancy Line Graph Slicer"
 node --version
 npm --version
+npm install --global powerbi-visuals-tools@latest
+pbiviz --version
+cd "<visual-folder>"
 npm install
 npm run lint
-npm run package
+pbiviz package
 ```
 
-If `node` or `npm` is unavailable, stop and follow [Microsoft's Power BI visual environment setup](https://learn.microsoft.com/power-bi/developer/visuals/environment-setup) before continuing. Do not install `pbiviz` globally for this repository; npm scripts use the project-local CLI.
+Replace `<visual-folder>` with the selected directory name. If `node` or `npm` is unavailable, stop and follow [Microsoft's Power BI visual environment setup](https://learn.microsoft.com/power-bi/developer/visuals/environment-setup) before continuing. The global CLI is shared across visual projects; each project keeps its runtime and lint dependencies local.
 
 ### Agent Operating Contract
 
-- Read `Fancy Line Graph Slicer/README.md`, `package.json`, `pbiviz.json`, and the nearest source files before editing.
+- Read the selected visual's `README.md`, `package.json`, `pbiviz.json`, and nearest source files before editing.
 - Treat `src/visual.ts`, `src/settings.ts`, `style/visual.less`, `capabilities.json`, and `pbiviz.json` as the authored visual surface.
 - Keep matching format property names synchronized between `src/settings.ts` and `capabilities.json`.
 - Do not edit or commit `node_modules/`, `dist/`, `.tmp/`, webpack statistics, certificates, keys, passphrases, environment files, or machine-specific settings.
 - Dependencies intentionally float within the ranges in `package.json`; `.npmrc` disables lockfile generation.
-- Run `npm run lint` after source edits and `npm run package` before considering a change complete.
+- Run `npm run lint` after source edits and `pbiviz package` before considering a change complete.
 - Keep the existing visual GUID for updates. Increment both version fields in `pbiviz.json` only when preparing a new distributable release.
 - With read-only upstream access, keep changes local or produce a patch. Do not attempt to push, alter remotes, or expose credentials.
 
@@ -35,7 +37,7 @@ If `node` or `npm` is unavailable, stop and follow [Microsoft's Power BI visual 
 
 1. The requested behavior or documentation is implemented in the smallest relevant surface.
 2. `npm run lint` passes.
-3. `npm run package` succeeds and creates `dist/*.pbiviz` when code, capabilities, styles, or package metadata changed.
+3. `pbiviz package` succeeds and creates `dist/*.pbiviz` when code, capabilities, styles, or package metadata changed.
 4. `git diff --check` passes and `git status --short` contains only intended files.
 5. No secrets, local absolute paths, generated files, or unrelated changes are included.
 
@@ -61,10 +63,11 @@ Install:
 
 - [Git](https://git-scm.com/downloads)
 - [Node.js](https://nodejs.org/) 20.19 or later; npm is included with Node.js
+- Power BI Visuals CLI, installed globally with `npm install --global powerbi-visuals-tools@latest`
 - A modern browser and a Power BI Pro or Premium Per User account for live Service debugging
 - Power BI Desktop on Windows only if testing packaged visuals in Desktop
 
-Do not install `pbiviz` globally. `npm install` gets the current Power BI Visuals CLI and development tools for this project.
+The global `pbiviz` command follows Microsoft's standard environment setup and can build every visual project in this repository.
 
 ### Get the Source and Install Dependencies
 
@@ -73,7 +76,7 @@ Read access to the public repository is sufficient to build and test locally:
 ```shell
 git clone https://github.com/edwardpcharles/Native-Custom-Viz.git
 cd Native-Custom-Viz
-cd "Fancy Line Graph Slicer"
+cd "<visual-folder>"
 npm install
 ```
 
@@ -81,23 +84,23 @@ Dependencies use compatible version ranges, while development tools follow their
 
 ## Commands
 
-Run these from `Native-Custom-Viz/Fancy Line Graph Slicer`:
+Run these from the selected visual folder:
 
 | Command | Purpose |
 | --- | --- |
 | `npm install` | Install current compatible dependencies and development tools |
 | `npm run lint` | Check the authored source |
-| `npm run start` | Start the local server for live debugging in Power BI Service |
-| `npm run package` | Validate and create a distributable `.pbiviz` in `dist/` |
+| `pbiviz start` | Start the local server for live debugging in Power BI Service |
+| `pbiviz package` | Validate and create a distributable `.pbiviz` in `dist/` |
 
-The npm scripts automatically use the project-local CLI. No global npm packages are required. Because dependencies are not locked, review and test changes after every fresh install or dependency update.
+The `pbiviz` command comes from the global Power BI Visuals CLI. Because project dependencies are not locked, review and test changes after every fresh install or dependency update.
 
 ### Live Debugging in Power BI Service
 
 1. From the visual folder, start the local development server and keep the terminal open:
 
 	```powershell
-	npm run start
+	pbiviz start
 	```
 
 2. Confirm the server reports `https://localhost:8080` and compiles successfully.
@@ -113,7 +116,7 @@ The Developer Visual is a Service-only live development host. It loads `visual.j
 Create an importable package from the visual folder:
 
 ```powershell
-npm run package
+pbiviz package
 ```
 
 Import the resulting `dist/*.pbiviz` file into Power BI Desktop or Power BI Service. Desktop does not connect to `pbiviz start`. Its **Develop a visual** report setting is primarily needed when a local development package must override a published/AppSource visual with the same GUID.
@@ -127,7 +130,7 @@ For a release, keep the existing GUID and increment both version fields in `pbiv
 The command was run from the wrong directory. From the cloned repository root, enter the visual project:
 
 ```shell
-cd "Fancy Line Graph Slicer"
+cd "<visual-folder>"
 ```
 
 ### Developer Visual Cannot Contact the Server
@@ -143,20 +146,20 @@ curl -I https://localhost:8080/assets/visual.css
 All three asset requests should return `HTTP/1.1 200 OK`. If certificate validation fails:
 
 ```shell
-npm run pbiviz -- install-cert
+pbiviz install-cert
 ```
 
-Complete the operating system's certificate import for the current user, restart the browser, restart `npm run start`, and retry the asset checks. Never share the generated passphrase. If the browser still rejects localhost, follow the current [Microsoft certificate troubleshooting guidance](https://learn.microsoft.com/power-bi/developer/visuals/develop-circle-card#troubleshooting).
+Complete the operating system's certificate import for the current user, restart the browser, restart `pbiviz start`, and retry the asset checks. Never share the generated passphrase. If the browser still rejects localhost, follow the current [Microsoft certificate troubleshooting guidance](https://learn.microsoft.com/power-bi/developer/visuals/develop-circle-card#troubleshooting).
 
 ### Check the Installed Tool Version
 
-Check the project-local CLI selected by the latest install:
+Check the globally installed CLI:
 
 ```shell
-npm run pbiviz -- --version
+pbiviz --version
 ```
 
-The command reports the version currently resolved from npm.
+Update it when needed with `npm install --global powerbi-visuals-tools@latest`.
 
 ## Microsoft Learn References
 
@@ -171,7 +174,7 @@ The command reports the version currently resolved from npm.
 - [Package a Power BI visual](https://learn.microsoft.com/power-bi/developer/visuals/package-visual)
 - [Import a visual from a file or AppSource](https://learn.microsoft.com/power-bi/developer/visuals/import-visual)
 
-Microsoft examples can use a globally installed `pbiviz` command. In this repository, use the equivalent npm scripts so the CLI remains local to the project.
+This repository follows Microsoft Learn's global `pbiviz` installation model.
 
 ## Privacy and Repository Safety
 

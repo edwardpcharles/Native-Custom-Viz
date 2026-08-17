@@ -26,21 +26,22 @@ A responsive Power BI custom visual for exploring a time-series measure with two
 
 - Node.js 18 or later
 - npm
+- Power BI Visuals CLI (`powerbi-visuals-tools`), installed locally by `npm install`
 
 ### Commands
 
 ```powershell
 npm install
 npm run lint
-npm run package
+npx pbiviz package
 ```
 
-`npm run package` creates an importable `.pbiviz` file in `dist/`.
+`npx pbiviz package` uses the repository's pinned CLI version and creates an importable `.pbiviz` file in `dist/`. After `npm install`, `npm run package` is an equivalent alias.
 
 For local development with the Power BI developer visual:
 
 ```powershell
-npm run start
+npx pbiviz start
 ```
 
 ## Source Layout

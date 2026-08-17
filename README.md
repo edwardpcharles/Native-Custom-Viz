@@ -18,6 +18,7 @@ Generated packages, temporary build files, editor settings, certificates, and ma
 
 - Node.js 18 or later
 - npm
+- Power BI Visuals CLI (`powerbi-visuals-tools`), installed locally by `npm install`
 - Power BI Desktop for importing and testing the packaged visual
 
 ## Build
@@ -25,10 +26,10 @@ Generated packages, temporary build files, editor settings, certificates, and ma
 ```powershell
 cd "Fancy Line Graph Slicer"
 npm install
-npm run package
+npx pbiviz package
 ```
 
-The compiled `.pbiviz` file is written to the visual's `dist/` directory.
+The compiled `.pbiviz` file is written to the visual's `dist/` directory. `npm run package` is an equivalent project alias after dependencies are installed.
 
 ## License
 

@@ -7,12 +7,14 @@ node_modules/
 **/webpack.statistics.*.html
 
 # Local certificates and keys
+pbiviz-certs/
 *.pfx
 *.p12
 *.pem
 *.key
 *.crt
 *.cer
+PowerBICustomVisualTestPass.txt
 
 # Environment and secret files
 .env

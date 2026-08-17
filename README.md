@@ -16,9 +16,9 @@ Generated packages, temporary build files, editor settings, certificates, and ma
 
 ## Requirements
 
-- Node.js 18 or later
+- Node.js 20.19 or later
 - npm
-- Power BI Visuals CLI (`powerbi-visuals-tools`), installed locally by `npm install`
+- Power BI Visuals CLI (`powerbi-visuals-tools` 7.2.1), installed locally by `npm install`
 - Power BI Desktop for importing and testing the packaged visual
 
 ## Build

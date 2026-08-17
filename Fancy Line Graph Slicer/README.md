@@ -24,9 +24,9 @@ A responsive Power BI custom visual for exploring a time-series measure with two
 
 ### Prerequisites
 
-- Node.js 18 or later
+- Node.js 20.19 or later
 - npm
-- Power BI Visuals CLI (`powerbi-visuals-tools`), installed locally by `npm install`
+- Power BI Visuals CLI (`powerbi-visuals-tools` 7.2.1), installed locally by `npm install`
 
 ### Commands
 

@@ -1,9 +1,12 @@
 {
   "name": "fancy-line-graph-slicer",
   "description": "Interactive Power BI line graph slicer with draggable comparison handles.",
-  "version": "1.1.37",
+  "version": "1.1.38",
   "private": true,
   "license": "MIT",
+  "engines": {
+    "node": ">=20.19.0"
+  },
   "scripts": {
     "pbiviz": "pbiviz",
     "start": "pbiviz start",
@@ -14,13 +17,13 @@
     "@types/d3": "7.4.3",
     "d3": "7.9.0",
     "powerbi-visuals-api": "~5.11.1",
-    "powerbi-visuals-utils-formattingmodel": "6.0.4"
+    "powerbi-visuals-utils-formattingmodel": "7.1.0"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^8.8.0",
-    "eslint": "^9.11.1",
-    "eslint-plugin-powerbi-visuals": "^1.0.0",
-    "powerbi-visuals-tools": "6.2.0",
-    "typescript": "5.5.4"
+    "@typescript-eslint/eslint-plugin": "8.67.0",
+    "eslint": "10.8.1",
+    "eslint-plugin-powerbi-visuals": "1.1.1",
+    "powerbi-visuals-tools": "7.2.1",
+    "typescript": "5.9.3"
   }
 }

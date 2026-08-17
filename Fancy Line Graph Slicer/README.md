@@ -20,29 +20,23 @@ A responsive Power BI custom visual for exploring a time-series measure with two
 | Category Data | Grouping | Ordered category, normally a date |
 | Measure Data | Measure | Numeric value plotted on the line graph |
 
-## Build
+## Build and Development
 
-### Prerequisites
+For clean-machine prerequisites, cloning, certificate setup, Power BI Service live debugging, Desktop testing, and troubleshooting, follow the repository-level [development workflow](../README.md#start-on-a-new-computer).
 
-- Node.js 20.19 or later
-- npm
-- Power BI Visuals CLI (`powerbi-visuals-tools` 7.2.1), installed locally by `npm install`
+From this folder, the complete command set is:
 
-### Commands
-
-```powershell
-npm install
+```shell
+npm ci
 npm run lint
-npx pbiviz package
+npm run start
+npm run package
 ```
 
-`npx pbiviz package` uses the repository's pinned CLI version and creates an importable `.pbiviz` file in `dist/`. After `npm install`, `npm run package` is an equivalent alias.
-
-For local development with the Power BI developer visual:
-
-```powershell
-npx pbiviz start
-```
+- Run `npm ci` once after cloning or when `package-lock.json` changes.
+- Use `npm run start` for live debugging with the Developer Visual in Power BI Service.
+- Use `npm run package` to create an importable `dist/*.pbiviz` for Power BI Desktop, Power BI Service, or distribution.
+- The scripts use the pinned local Power BI Visuals CLI; no global npm package is required.
 
 ## Source Layout
 

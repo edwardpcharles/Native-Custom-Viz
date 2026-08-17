@@ -2,6 +2,43 @@
 
 Open-source Power BI custom visuals built with the official Power BI Visuals SDK.
 
+## Agent Quick Start
+
+This repository is the source of truth. An AI agent pointed at this directory should work only in `Fancy Line Graph Slicer` unless the task explicitly targets repository-level documentation or configuration.
+
+From the repository root:
+
+```shell
+git status --short
+cd "Fancy Line Graph Slicer"
+node --version
+npm --version
+npm install
+npm run lint
+npm run package
+```
+
+If `node` or `npm` is unavailable, stop and follow [Microsoft's Power BI visual environment setup](https://learn.microsoft.com/power-bi/developer/visuals/environment-setup) before continuing. Do not install `pbiviz` globally for this repository; npm scripts use the project-local CLI.
+
+### Agent Operating Contract
+
+- Read `Fancy Line Graph Slicer/README.md`, `package.json`, `pbiviz.json`, and the nearest source files before editing.
+- Treat `src/visual.ts`, `src/settings.ts`, `style/visual.less`, `capabilities.json`, and `pbiviz.json` as the authored visual surface.
+- Keep matching format property names synchronized between `src/settings.ts` and `capabilities.json`.
+- Do not edit or commit `node_modules/`, `dist/`, `.tmp/`, webpack statistics, certificates, keys, passphrases, environment files, or machine-specific settings.
+- Dependencies intentionally float within the ranges in `package.json`; `.npmrc` disables lockfile generation.
+- Run `npm run lint` after source edits and `npm run package` before considering a change complete.
+- Keep the existing visual GUID for updates. Increment both version fields in `pbiviz.json` only when preparing a new distributable release.
+- With read-only upstream access, keep changes local or produce a patch. Do not attempt to push, alter remotes, or expose credentials.
+
+### Agent Definition of Done
+
+1. The requested behavior or documentation is implemented in the smallest relevant surface.
+2. `npm run lint` passes.
+3. `npm run package` succeeds and creates `dist/*.pbiviz` when code, capabilities, styles, or package metadata changed.
+4. `git diff --check` passes and `git status --short` contains only intended files.
+5. No secrets, local absolute paths, generated files, or unrelated changes are included.
+
 ## Visuals
 
 ### [Fancy Line Graph Slicer](Fancy%20Line%20Graph%20Slicer)
@@ -120,6 +157,21 @@ npm run pbiviz -- --version
 ```
 
 The command reports the version currently resolved from npm.
+
+## Microsoft Learn References
+
+- [Set up a Power BI visual development environment](https://learn.microsoft.com/power-bi/developer/visuals/environment-setup)
+- [Develop a visual and test it with the Developer Visual](https://learn.microsoft.com/power-bi/developer/visuals/develop-circle-card)
+- [Understand the Power BI visual project structure](https://learn.microsoft.com/power-bi/developer/visuals/visual-project-structure)
+- [Power BI Visual API](https://learn.microsoft.com/power-bi/developer/visuals/visual-api)
+- [Capabilities and properties](https://learn.microsoft.com/power-bi/developer/visuals/capabilities)
+- [Data view mappings](https://learn.microsoft.com/power-bi/developer/visuals/dataview-mappings)
+- [Formatting model API](https://learn.microsoft.com/power-bi/developer/visuals/format-pane-general)
+- [Selection API and cross-filtering](https://learn.microsoft.com/power-bi/developer/visuals/selection-api)
+- [Package a Power BI visual](https://learn.microsoft.com/power-bi/developer/visuals/package-visual)
+- [Import a visual from a file or AppSource](https://learn.microsoft.com/power-bi/developer/visuals/import-visual)
+
+Microsoft examples can use a globally installed `pbiviz` command. In this repository, use the equivalent npm scripts so the CLI remains local to the project.
 
 ## Privacy and Repository Safety
 

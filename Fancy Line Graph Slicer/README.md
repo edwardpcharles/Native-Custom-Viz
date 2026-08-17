@@ -2,6 +2,29 @@
 
 A responsive Power BI custom visual for exploring a time-series measure with two draggable comparison handles.
 
+## Agent Entry Point
+
+An agent opened directly in this folder can bootstrap and validate the project with:
+
+```shell
+node --version
+npm --version
+npm install
+npm run lint
+npm run package
+```
+
+Use `npm run start` only for live testing with the Developer Visual in Power BI Service. Read the repository-level [Agent Quick Start](../README.md#agent-quick-start) for operating boundaries, clean-machine prerequisites, certificate troubleshooting, privacy rules, and Microsoft Learn references.
+
+For most changes:
+
+- Rendering, data handling, and interaction logic: `src/visual.ts`
+- Format pane definitions: `src/settings.ts` and matching properties in `capabilities.json`
+- Layout and appearance: `style/visual.less`
+- Visual identity and release version: `pbiviz.json`
+
+Do not edit generated output. Finish source changes with `npm run lint`, `npm run package`, and `git diff --check`.
+
 ## Features
 
 - Responsive line and area chart
